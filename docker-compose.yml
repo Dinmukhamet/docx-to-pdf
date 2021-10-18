@@ -1,0 +1,15 @@
+version: "3"
+services:
+
+  api:
+    container_name: api
+    build: .
+    volumes:
+      - templates:/app/templates
+      - rendered:/app/rendered
+    ports:
+      - 7000:7000
+
+volumes:
+  templates:
+  rendered:
