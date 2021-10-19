@@ -28,9 +28,9 @@ async def upload_template(file: UploadFile = File(...)):
 
 
 @app.post("/download-converted", response_class=FileResponse)
-async def download_converted(data: Data):
+def download_converted(data: Data):
     rendered_file: Path = Render.render_file(data.file_path, data.content)
-    converted_file: Path = await Convert.convert_file(rendered_file)
+    converted_file: Path = Convert.convert_file(rendered_file)
     if not converted_file.exists():
         raise HTTPException(status_code=500, detail="Failed to convert file.")
     return converted_file
