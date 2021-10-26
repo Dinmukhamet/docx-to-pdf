@@ -17,7 +17,8 @@ class Render:
         doc = DocxTemplate(file_path)
         doc.render(context)
 
-        file_path = cls.get_path(base_name=context.get("FullName"))
+        
+        file_path = cls.get_path(base_name=context.get("FullName") or context.get("CashDocumentNumber"))
 
         logger.info("Saving rendered file to: {path}".format(path=file_path))
         doc.save(file_path)
